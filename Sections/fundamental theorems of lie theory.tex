@@ -1,13 +1,13 @@
-\section{The fundamental theorems of Lie theory}
+\section{The fundamental theorems for Lie groups}
     \subsection{Lie's three theorems}
         Originally, Sophus Lie tried to encapsulate the relationship between his Lie groups and Lie algebras within three theorems, commonly referred to simply as Lie's First, Second, and Third Theorem. Using the language of categories, however, one is able to combine all three of these results into one singular theorem.
         
         \begin{definition}[Distributions of subspaces] \label{def: distributionsof_subspaces_on_manifolds}
-            Suppose that $X$ is a manifold and that $\E \to X$ is a smooth vector bundle. Then, a (smooth) \textbf{distribution of subspaces} of $\E$ is a (smooth) vector sub-bundle $\calF \to X$ of $\E$. When speaking simply of \say{distributions} on $X$, we shall mean smooth vector sub-bundles of te tangent bundle $TM$.
+            Suppose that $X$ is a manifold and that $\E \to X$ is a (not necessarily smooth) vector bundle. Then, a (smooth) \textbf{distribution of subspaces} of $\E$ is a (smooth) vector sub-bundle $\calF \to X$ of $\E$. When speaking simply of \say{distributions} on $X$, we shall mean smooth vector sub-bundles of te tangent bundle $TM$.
         \end{definition}
         \begin{definition}[Integrability of distributions] \label{def: integrability_of_distributions}
             Let $X$ be a manifold and $\calF \to X$ be a distribution 
-            of subspaces thereon. $\calF$ is said to be \textbf{integrable} if its fibres $\calF_x$ over points $x \in X$ are Lie algebras with respect to the natural bracket defined via composition (i.e. for all sections $\del_1, \del_2 \in \calF_x$, we define $[\del_1, \del_2] := \del_1 \circ \del_2 - \del_2 \circ \del_1$). 
+            of subspaces thereon. $\calF$ is said to be \textbf{integrable} if its fibres $\calF_x$ over points $x \in X$ are Lie algebras with respect to the natural bracket defined via commutators.
         \end{definition}
         \begin{example}
             \noindent
@@ -17,35 +17,48 @@
             \end{itemize}
         \end{example}
         \begin{definition}[Integral submanifolds] \label{def: integral_submanifolds}
-            
+            A (smooth) \textbf{integral submanifold} of a given manifold $X$ is a submanifold $Z \subseteq X$ that is \textit{locally} homeomorphic (respectively, smoothly diffeomorphic) to a connected (smooth) distribution of subspaces of some (smooth) vector bundle $\E \to X$ of rank $\leq \dim X$.
         \end{definition}
-        \begin{lemma}[An integrability criterion for distributions] \label{lemma: an_integrability_criterion_for_distributions}
-            
-        \end{lemma}
-            \begin{proof}
-                
-            \end{proof}
-        
+        \begin{remark}[Integral submanifolds in terms of local coordinates] \label{remark: integral_submanifolds_in_terms_of_local_coordinates}
+            Alternatively, one might say that a rank-$n$ integral submanifold of a given manifolds $X$ (with $r \leq \dim X$) is a submanifold $Z \subseteq X$ such that at every point $x \in Z$ and every open neighbourhood $U \ni x$ thereof, one can find a smooth diffeomorphism $U \cong D_n$, with $D_n$ denoting the closure of the spanned of the tangent vectors $\del_1, ..., \del_n \in T_xZ$.
+        \end{remark}
         \begin{lemma}[Embeddings of finite-dimensional Lie algebras into matrix algebras] \label{lemma: embedding_finite_dimensional_lie_algebras_into_matrix_algebras}
-            Any finite-dimensional Lie algebra over a given field $k$ of characteristic $0$ is a Lie subalgebra of $\frakgl_n(k)$ for some $n \geq 1$.
+            \footnote{This is commonly known as Ado's Theorem.}Any finite-dimensional Lie algebra over a given field $k$ of characteristic $0$ admits a finite-dimensional faithful $k$-linear representation.
         \end{lemma}
             \begin{proof}
                 Recall that the universal enveloping algebras of Lie $k$-algebras arise via a (strict) monoidal functor:
                     $$U: k\-\Lie\Alg \to k\-\bi\Alg$$
                     $$\g \mapsto U(\g)$$
                 where on the left-hand side, the monoidal structure is given by binary direct sums of Lie algebras, with the monoidal unit being the zero Lie algebra, i.e. we have $U(\g \oplus \h) \cong U(\g) \tensor_k U(\h)$ for all Lie $k$-algebras $\g$ and $\h$, and that for each Lie $k$-algebra $\g$ the corresponding universal enveloping algebra $U(\g)$ is a $k$-bialgebra\footnote{Always assumed to be (co)unital and (co)associative.}. Recall also that there is a monoidal equivalence:
-                    $$\Rep_k(\g) \cong U(\g)\bimod$$
-                between the category of $k$-linear representations of $\g$ and that of $U(\g)$-bimodules.
+                    $$\Rep_k(\g) \cong {}^lU(\g)\mod$$
+                between the category of $k$-linear representations of $\g$ and that of left-$U(\g)$-modules.
+            \end{proof}
+        \begin{proposition}[An integrability criterion for distributions] \label{prop: an_integrability_criterion_for_distributions}
+            \footnote{This is also called Frobenius' Theorem.}Let $k$ be either $\R$ or $\bbC$ and let $X$ be a finite-dimensional smooth manifold over $k$ (say, $\dim X = n$). Then, a given smooth distribution of subspaces $\calF \to X$ of rank $r \leq n$ is integrable if and only if it is an integral submanifold of dimension $r$ inside $X$.
+        \end{proposition}
+            \begin{proof}
+                If a given smooth distribution of subspaces $\calF \to X$ of rank $r \leq n$ is integrable then thanks to lemma \ref{lemma: embedding_finite_dimensional_lie_algebras_into_matrix_algebras}, it will suffice to only show that at each point $x \in X$, the Lie algebra $\calF_x$ admits a faithful $k$-linear representation of dimension $d \leq n$ in order to show that $\calF$ is an integral submanifold of $X$ (cf. definition \ref{def: integral_submanifolds}).
+                
+                Conversely, suppose that $Z \subseteq X$ is an integral submanifold of dimension $r \leq n$. Such an embedding induces on between tangent bundles, i.e. $TZ$ is a vector sub-bundle of $TX$ of rank $r \leq n$. Per definition \ref{def: distributionsof_subspaces_on_manifolds}, this means that $TZ$ is a distribution of subspaces of rank $r$ of the rank-$n$ vector bundle $TX \to X$. 
             \end{proof}
         
+        \begin{lemma}[Cartan's closed subgroup theorem] \label{lemma: cartan_closed_subgroup_theorem}
+            If $H$ is a closed subgroup of a finite-dimensional Lie group over $k$ (with $k$ being either $\R$ or $\bbC$) then $H$ will be a Lie subgroup of $G$. 
+        \end{lemma}
+            \begin{proof}
+                
+            \end{proof}
+        \begin{corollary}[Lie algebras of closed subgroups of Lie groups] \label{coro: lie_algebras_of_closed_subgroups_of_lie_groups}
+            Suppose that $k$ is either $\R$ or $\bbC$ and that $G$ is a finite-dimensional Lie group over $k$. Then, any closed subgroup $H \leq G$ gives rise to a Lie $k$-subalgebra $\h \subseteq \g$, which is precisely the Lie algebra of $H$.
+        \end{corollary}
         \begin{theorem}[The Fundamental Theorem of Lie Theory] \label{theorem: fundamental_theorem_of_lie_theory}
-            Suppose that $k$ is either $\R$ or $\bbC$, equipped with their natural archimedean topologies and consider the following functor from the category of Lie groups over $k$ to that of Lie $k$-algebras:
-                $$\frakLie: \Lie\Grp_{/k} \to k\-\Lie\Alg$$
+            Suppose that $k$ is either $\R$ or $\bbC$, equipped with their natural archimedean topologies and consider the following functor from the category of connected Lie groups over $k$ to that of Lie $k$-algebras:
+                $$\frakLie: \Lie\Grp_{/k}^{\connected} \to k\-\Lie\Alg$$
                 $$G \mapsto T_e G$$
-            which assigns to each Lie group $G$ over $k$ its tangent space at the identity $T_eG$ (which shall be understood to come equipped with its natural Lie algebra structure). 
+            which assigns to each connected Lie group $G$ over $k$ its tangent space at the identity $T_eG$ (which shall be understood to come equipped with its natural Lie algebra structure). 
                 \begin{enumerate}
                     \item The functor $\frakLie$ preserves and reflects monomorphisms.
-                    \item The functor $\frakLie$ is fully faithful. 
+                    \item The functor $\frakLie$ is fully faithful on simply connected Lie groups over $k$. 
                     \item In fact, it gives an equivalence between the category of simply connected Lie groups over $k$ and that of finite-dimensional Lie $k$-algebras.
                 \end{enumerate}
         \end{theorem}
@@ -54,7 +67,7 @@
                 \begin{enumerate}
                     \item 
                     \item 
-                    \item 
+                    \item From corollary \ref{coro: lie_algebras_of_closed_subgroups_of_lie_groups}, we know that 
                 \end{enumerate}
             \end{proof}
         
@@ -64,7 +77,5 @@
             \begin{proof}
                 
             \end{proof}
-    
-    \subsection{Basics on representations of Lie algebras}
     
     \subsection{The Baker-Campbell-Hausdorff Formula}
